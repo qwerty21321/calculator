@@ -1,6 +1,6 @@
 import pytest
 
-from calculator.core import add, subtract, multiply, divide
+from calculator.core import add, subtract, multiply, divide, power
 
 
 @pytest.mark.parametrize("a,b,expected", [(2,3,5), (-2,3,1), (0,0,0), (1.5,2.5,4)])
@@ -23,3 +23,8 @@ def test_divide():
 def test_divide_by_zero():
     with pytest.raises(ValueError, match="Деление на ноль невозможно"):
         divide(1, 0)
+
+
+@pytest.mark.parametrize("a,b,expected", [(2,3,8), (5,0,1), (2,-2,0.25)])
+def test_power(a, b, expected):
+    assert power(a, b) == pytest.approx(expected)
